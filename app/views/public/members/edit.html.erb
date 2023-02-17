@@ -1,2 +1,44 @@
-<h1>Public::Members#edit</h1>
-<p>Find me in app/views/public/members/edit.html.erb</p>
+<h2>会員情報編集</h2>
+
+<%= render "public/shared/error_messages", resource: @member %>
+
+<%= form_with model: current_member, url: members_update_path, method: :patch do |f| %>
+
+<div>
+  氏名
+  <%= f.text_field :last_name, autofocus: true %>
+  <%= f.text_field :first_name, autofocus: true %>
+</div>
+
+<div>
+  フリガナ
+  <%= f.text_field :last_name_kana, autofocus: true %>
+  <%= f.text_field :first_name_kana, autofocus: true %>
+</div>
+
+<div>
+  郵便番号
+  <%= f.text_field :postal_code %>
+</div>
+
+<div>
+  住所
+  <%= f.text_field :address %>
+</div>
+
+<div>
+  電話番号
+  <%= f.text_field :phone_number %>
+</div>
+
+<div>
+  メールアドレス
+  <%= f.text_field :email %>
+</div>
+
+<div>
+  <%= f.submit '編集内容を保存' %>
+  <%= link_to '退会する', members_confirm_path %>
+</div>
+
+<% end %>
