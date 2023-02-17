@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
 }
 
-  devise_for :admin, controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
 
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :order_details, only: [:update]
     end
   end
-  
+
   scope module: :public do
     root to: "homes#top"
     get 'about' => 'homes#about'
