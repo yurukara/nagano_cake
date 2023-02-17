@@ -29,14 +29,17 @@
       </thead>
       
       <tbody class='table-bordered'>
-        <% @addresses.each do |address| %>
-          <td><%= address.postal_code %></td>
-          <td><%= address.address %></td>
-          <td><%= address.shipping_name %></td>
-          <td>編集、削除</td>
+          <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.shipping_name %></td>
+            <td><%= link_to 'Edit', edit_address_path(address.id), class: "btn btn-sm btn-success" %></td>
         <% end %>
+          </tr>
         
       </tbody>
       
     </table>
   </div>
+ 
