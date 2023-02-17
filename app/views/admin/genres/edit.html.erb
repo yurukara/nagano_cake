@@ -1,5 +1,5 @@
 <h2>ジャンル編集</h2>
-<%= form_with model: @genre, url: edit_admin_genre_path(@genre), method: :patch, local:true do |f| %>
+<%= form_with model: @genre, url: admin_genre_path(@genre), method: :patch, local:true do |f| %>
   <%= f.label :name, "ジャンル名" %>
   <%= f.text_field :name, class: 'form-control book_body' %>
 
