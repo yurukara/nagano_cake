@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+
   before_action :member_state, only:[:create]
 
   def after_sign_in_path_for(resource)
@@ -16,6 +17,7 @@ class Public::SessionsController < Devise::SessionsController
       end
 
   end
+
 
   # before_action :configure_sign_in_params, only: [:create]
 
