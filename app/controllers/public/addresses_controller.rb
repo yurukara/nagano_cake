@@ -5,7 +5,7 @@ class Public::AddressesController < ApplicationController
   end
   
   def create
-    @address = address.new(address_params)
+    @address = Address.new(address_params)
     @address.member_id = current_member.id
     @address.save
     redirect_to request.referer

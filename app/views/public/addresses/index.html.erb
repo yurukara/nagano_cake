@@ -8,11 +8,35 @@
     
     <div class="field">
     <%= f.label :address, '住所' %>
-    <%= f.text_field :address, autofocus: true, placeholder: '東京都渋谷区代々木神園町0-0' %>
+    <%= f.text_field :address, autofocus: true,  placeholder: '東京都渋谷区代々木神園町0-0', class: "w-50 address-textarea" %>
+    <!--class　w-50の部分で横幅変えてます。清原-->
     <div class="field">
     <%= f.label :shipping_name, '宛名' %>
     <%= f.text_field :shipping_name, autofocus: true, placeholder: '令和道子' %>
   </div>
-    <%= f.submit '新規登録' %>
+    <%= f.submit '新規登録', class: 'btn btn-success' %>
   <% end %>
-  
+  <div class='container px-6 px-sm-0'>
+    <table class="table">
+      <thead class='table-dark'>
+        <tr>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>宛名</th>
+          <th colspan='4'></th>
+          <!--上にedit、deleteが入ります-->
+        </tr>
+      </thead>
+      
+      <tbody class='table-bordered'>
+        <% @addresses.each do |address| %>
+          <td><%= address.postal_code %></td>
+          <td><%= address.address %></td>
+          <td><%= address.shipping_name %></td>
+          <td>編集、削除</td>
+        <% end %>
+        
+      </tbody>
+      
+    </table>
+  </div>
