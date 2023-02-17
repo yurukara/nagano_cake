@@ -1,3 +1,4 @@
+<%= flash[:notice] %>
 <h1>配送先登録/一覧</h1>
 
 
@@ -34,7 +35,10 @@
             <td><%= address.postal_code %></td>
             <td><%= address.address %></td>
             <td><%= address.shipping_name %></td>
-            <td><%= link_to 'Edit', edit_address_path(address.id), class: "btn btn-sm btn-success" %></td>
+            <td>
+              <%= link_to 'Edit', edit_address_path(address.id), class: "btn btn-sm btn-success" %>
+              <%= link_to 'Destroy', address, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%>
+            </td>
         <% end %>
           </tr>
         

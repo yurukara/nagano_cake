@@ -1,4 +1,5 @@
 class Public::AddressesController < ApplicationController
+  
   def index
     @address = Address.new
     @addresses = Address.all
@@ -13,6 +14,22 @@ class Public::AddressesController < ApplicationController
 
   def edit
     @address = Address.find(params[:id])
+  end
+  
+  def update
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      redirect_to addresses_path, notice: "配送先の情報を更新しました"
+    else
+      redirect_to request.referer
+      # 本当はrenderにしたいのですが、空白にした状態で更新掛けようとするとエラーが出てしまうので、時間あったら直します(要件定義にはないはず)
+    end
+  end
+  
+  def destroy
+    @address = Address.find(params[:id])
+    @address.destroy
+    redirect_to request.referer, notice: "配送先の情報を削除しました"
   end
 
 
