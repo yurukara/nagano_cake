@@ -1,2 +1,42 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<h3>商品新規登録</h3>
+
+<div>
+  <%= form_with model: @item, url: admin_items_path, method: :post, local: true do |f| %>
+    <%= render "admin/admin/shared/error_messages", resource: @item %>
+    <div>
+      <%= f.label :image, '商品画像' %>
+      <%= f.file_field :image, accept: "image/*" %>
+    </div>
+
+    <div>
+      <%= f.label :name, '商品名' %>
+      <%= f.text_field :name %>
+    </div>
+
+     <div>
+      <%= f.label :introduction, '商品説明' %>
+      <%= f.text_area :introduction, rows: "5" %>
+    </div>
+
+    <div>
+      <%= f.label :genre_id, 'ジャンル' %>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "選択してください"} %>
+      <!--<%= f.select :genre_id, options_for_select({"ケーキ" => "1", "焼き菓子" => "2", "プリン" => "3", "キャンディ" => "4"}) %>-->
+    </div>
+
+    <div>
+      <%= f.label :price, '税抜価格' %>
+      <%= f.number_field :price %>円
+    </div>
+    
+    <div>
+      <%= f.label :is_active, '販売ステータス' %>
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :is_active, '販売中', value: true %>
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active, '販売停止中', value: false %>
+    </div>
+
+    <%= f.submit '新規登録' %>
+  <% end %>
+</div>
