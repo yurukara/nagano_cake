@@ -1,0 +1,20 @@
+<header>
+  
+  <ul>
+      <h3>【ログイン状態(会員)】</h3>
+        <li>
+          <%= link_to "マイページ", my_page_path %>
+        </li>
+        <li>
+          <%= link_to "商品一覧", my_page_path %>
+          <!--実装次第パスの部分を書き換えて下さい-->
+        </li>
+        <li>
+          <%= link_to "カート", my_page_path %>
+          <!--実装次第パスの部分を書き換えて下さい-->
+        </li>
+        <li>
+          <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+        </li>
+  </ul>
+</header>

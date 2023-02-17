@@ -1,0 +1,20 @@
+<header>
+  
+  <ul>
+      <h3>【ログイン状態(管理者)】</h3>
+        <li>
+          <%= link_to "マイページ", admin_path %>
+        </li>
+        <li>
+          <%= link_to "商品一覧", admin_path %>
+          <!--実装次第パスの部分を書き換えて下さい-->
+        </li>
+        <li>
+          <%= link_to "カート", admin_path %>
+          <!--実装次第パスの部分を書き換えて下さい-->
+        </li>
+        <li>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        </li>
+  </ul>
+</header>
