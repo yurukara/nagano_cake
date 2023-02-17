@@ -1,18 +1,23 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  # before_action :member_state, only:[:create]
 
-  # def member_state
-  #   @member = Member.find_by(email: params[:member][:email])
-  #   return if !@member
-  #   if (@member.valid_password?(params[:member][:password])) && (@member.is_deleted == false)
-  #     redirect_to root_path
-  #   else
-  #     flash[:notice] = "退会済みです。"
-  #     redirect_to root_path
-  #   end
-  # end
+  before_action :member_state, only:[:create]
+
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
+  def member_state
+    @member = Member.find_by(email: params[:member][:email])
+    return if !@member
+      if @member.valid_password?(params[:member][:password]) && @member.is_deleted == false
+      else
+        redirect_to root_path
+      end
+
+  end
+
 
   # before_action :configure_sign_in_params, only: [:create]
 
