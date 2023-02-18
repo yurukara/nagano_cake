@@ -9,7 +9,7 @@
                   <p><%= @item.number_to_currency(@item.price) %><span>(税込)</span></p>
                   <p><%= image_tag @item.get_item_image %></p>
                   <%= form_with(model: @cart_item, url: cart_items_path, mehod: :post, local: true)do |f| %>
-                  <%= f.select :quantity, [1,2,3] %>
+                  <%= f.select :quantity, *[1..50] %>
                   <%= f.hidden_field :item_id, :value => @item.id %>
                   <p><%= f.submit "カートに入れる" %></p>
                   <% end %>
