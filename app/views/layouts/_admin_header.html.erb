@@ -28,6 +28,9 @@
                       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
                     </li>
                 </ul>
+              <div>
+                <%= render 'searches/search' %>
+              </div>
           </div>
     </div>
   </nav>

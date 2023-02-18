@@ -34,4 +34,6 @@ Rails.application.routes.draw do
     get 'orders/thanks' => 'orders#thanks',as:'orders_thanks'
     resources :addresses, only: [:index,:edit,:create,:update,:destroy]
   end
+
+  get '/searches' => 'searches#search', as:'search'
  end
