@@ -2,6 +2,7 @@ class Item < ApplicationRecord
 
   has_many :cart_items
   has_many :order_items
+  belongs_to :genre
   has_one_attached :image
 
   with_options presence: true do

@@ -1,0 +1,8 @@
+<div>
+  <h4>ジャンル検索</h4>
+   <% genres.each do |genre| %>
+      <ul>
+        <li><%= link_to genre.name, items_path(genre_id: genre.id) %></li>
+       </ul>
+   <% end %>
+</div>
