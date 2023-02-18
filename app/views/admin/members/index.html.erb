@@ -1,25 +1,37 @@
-<h2>会員一覧</h2>
-<table>
-  <thead>
-    <tr>
-      <th>会員ID</th>
-      <th>氏名</th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= @members.each do |member| %>
-      <tr>
-        <!--会員ID-->
-        <td><%= member.id %></td> 
-        <!--会員名-->
-        <td><%= member.name %></td>
-        <!--メールアドレス-->
-        <td><%= member.email %></td>
-        <!--会員ステータス-->
-        <td><%= member.status</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <h2>会員一覧</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @members.each do |member| %>
+          <tr>
+            <!--会員ID-->
+            <td><%= member.id %></td>
+            <!--会員名-->
+            <td>
+              <%= link_to "#{member.last_name}#{member.first_name}", '/admin/members/:id' %>
+            </td>
+            <!--メールアドレス-->
+            <td><%= member.email %></td>
+            <!--会員ステータス-->
+            <td>
+              <% if member.is_deleted == false %>
+                <p>有効</p>
+              <% elsif %>
+                <p>退会</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

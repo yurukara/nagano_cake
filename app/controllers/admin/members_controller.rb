@@ -1,9 +1,10 @@
 class Admin::MembersController < ApplicationController
   def index
-    @members = Members.all
+    @members = Member.all
   end
 
   def show
+    @member = Member.find(params[:id])
   end
 
   def edit
