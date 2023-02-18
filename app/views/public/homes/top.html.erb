@@ -1,44 +1,46 @@
-
-<%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
-
-<%= link_to 'マイページ', my_page_path %>
-
-<div>
-  <h4>ジャンル検索</h4>
-  <% @genres.each do |genre| %>
-  <ul>
-    <li><%= link_to genre.name, items_path(genre_id: genre.id) %></li>
-  </ul>
-  <% end %>
-</div>
-
-<div>
-  <p>
-    ようこそ、ながのCAKEへ！<br>
-    このサイトは、ケーキ販売のECサイトになります。<br>
-    会員でない方も商品の閲覧はできますが、<br>
-    購入には会員登録が必要になります。
-  </p>
-</div>
-
-<div>
-  <h2>
-    新着商品
-  </h2>
-  <% @items.first(4).each do |item| %>
-    <div>
-      <p>
-        <%= link_to item_path(item) do %>
-        (画像が入ります）
-        <% end %>
-      </p>
-      <p><%= item.name %></p>
-      <p><%= item.number_to_currency(item.price) %></p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-lg-2">
+      <h4>ジャンル検索</h4>
+      <% @genres.each do |genre| %>
+      <ul>
+        <li class="list-unstyled"><%= link_to genre.name, items_path(genre_id: genre.id) %></li>
+      </ul>
+      <% end %>
     </div>
-  <% end %>
+    <div class="col-lg-10">
+      <p>
+        ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+      <h2>新着商品</h2>
+      <div class='d-inline-flex'>
+      <% @items.first(4).each do |item| %>
+        <div class="flex-column mr-3">
+          <p>
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.get_item_image %>
+            <% end %>
+          </p>
+          <p><%= item.name %></p>
+          <p><%= item.number_to_currency(item.price) %></p>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col text-right">
+      <%= link_to '全ての商品を見る', items_path %>
+      </div>
+    </div>
 </div>
-
-<%= link_to '全ての商品を見る', items_path %>
-
 
 
