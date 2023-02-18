@@ -17,7 +17,7 @@
             <td><%= member.id %></td>
             <!--会員名-->
             <td>
-              <%= link_to "#{member.last_name}#{member.first_name}", '/admin/members/:id' %>
+              <%= link_to "#{member.last_name}#{member.first_name}", admin_member_path(member) %>
             </td>
             <!--メールアドレス-->
             <td><%= member.email %></td>

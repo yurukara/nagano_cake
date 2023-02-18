@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <h2><%= "#{member.last_name}#{member.first_name}" %>さんの会員詳細</h2>
     <div>
+      <h2><%= "#{@member.last_name}#{@member.first_name}" %>さんの会員詳細</h2>
       <table>
         <tr>
           <td>会員ID</td>
@@ -43,7 +43,8 @@
         </tr>
       </table>
       <div>
-        <%= link_to
+        <%= link_to '編集する', edit_admin_member_path(@member), class: "btn btn-success" %>
+        <%= link_to '注文履歴一覧を見る', admin_path, class: "btn btn-primary" %>
       </div>
     </div>
   </div>
