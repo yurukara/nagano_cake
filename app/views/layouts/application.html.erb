@@ -18,8 +18,9 @@
     <% else %>
       <%= render 'layouts/Log_out' %>
     <% end %>
-    
-        <%= yield %>
-      <%= render 'layouts/footer' %>
+    <main>
+      <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
