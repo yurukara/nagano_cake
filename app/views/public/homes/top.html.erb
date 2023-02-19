@@ -26,11 +26,11 @@
         <div class="flex-column mr-3">
           <p>
             <%= link_to item_path(item) do %>
-              <%= image_tag item.get_item_image %>
+              <%= image_tag item.get_item_image(200,200) %>
             <% end %>
           </p>
           <p><%= item.name %></p>
-          <p><%= item.number_to_currency(item.price) %></p>
+          <p>¥<%= item.with_tax_price.floor.to_s(:delimited) %></p>
         </div>
       <% end %>
       </div>
