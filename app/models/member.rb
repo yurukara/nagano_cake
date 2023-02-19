@@ -3,6 +3,12 @@ class Member < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+  has_many :cart_items
+  has_many :addresses
+
+
+  has_many :cart_items, dependent: :destroy
 
   validates :last_name, presence:true
   validates :first_name, presence:true
@@ -14,7 +20,7 @@ class Member < ApplicationRecord
   VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
   validates :phone_number, presence:true, format: { with: VALID_PHONE_REGEX }
   validates :is_deleted, inclusion: [true, false]
-
+  
   def active_for_authentication?
     super && (is_deleted == false)
   end
