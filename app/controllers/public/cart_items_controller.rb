@@ -19,6 +19,8 @@ class Public::CartItemsController < ApplicationController
       end
     else @cart_item.save
         redirect_to cart_items_path
+        
+        #個数の制限は要件にない部分なので、必要に応じて削除orコメントアウトで対応します。
           
     end
   end
