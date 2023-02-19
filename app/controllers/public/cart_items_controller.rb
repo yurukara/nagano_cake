@@ -9,17 +9,16 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = current_member.cart_items.new(cart_item_params)
     if current_member.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
-      cart_item = current_member.cart_items.find_by(item_id: params[:cart_item][:item_id])
-      cart_item.quantity += params[:cart_item][:quantity].to_i
-    return if cart_item.quantity > 50
-      cart_item.save
-      redirect_to cart_items_path
-    elsif @cart_item.save
-          redirect_to cart_items_path
-    else
-          @genres = Genre.all
-          @items = Item.all
-          render 'items/index'
+        cart_item = current_member.cart_items.find_by(item_id: params[:cart_item][:item_id])
+        cart_item.quantity += params[:cart_item][:quantity].to_i
+      if cart_item.quantity > 50
+        redirect_to request.referer
+      else
+        cart_item.save
+        redirect_to cart_items_path
+      end
+    else @cart_item.save
+        redirect_to cart_items_path
           
     end
   end
