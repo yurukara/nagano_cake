@@ -8,6 +8,8 @@ class Member < ApplicationRecord
   has_many :addresses
 
 
+  has_many :cart_items, dependent: :destroy
+
   validates :last_name, presence:true
   validates :first_name, presence:true
   validates :last_name_kana, presence:true
@@ -17,6 +19,7 @@ class Member < ApplicationRecord
   validates :address, presence:true
   VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
   validates :phone_number, presence:true, format: { with: VALID_PHONE_REGEX }
+  
 
   def active_for_authentication?
     super && (is_deleted == false)
