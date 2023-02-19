@@ -11,7 +11,7 @@ class Item < ApplicationRecord
    validates :price
    validates :image
  end
- validates :is_active
+ validates :is_active, inclusion: { in: [true, false] }
 
   def get_item_image(width,height)
     image.variant(resize_to_limit: [width,height]).processed
