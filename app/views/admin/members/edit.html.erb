@@ -1,9 +1,9 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-10">
+<div class="container mx-auto">
+  <div class="row mt-2">
+    <div class="mx-auto">
       <h2><%= "#{@member.last_name}#{@member.first_name}" %>さんの会員情報編集</h2>
       <%= form_with model: @member, url: admin_member_path, method: :patch do |f| %>
-        
+      
         <div>
           <label>会員ID</label>
           <%= @member.id %>

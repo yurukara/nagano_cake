@@ -18,16 +18,16 @@
               <td><%= member.id %></td>
               <!--会員名-->
               <td>
-                <%= link_to "#{member.last_name}#{member.first_name}", admin_member_path(member) %>
+                <%= link_to "#{member.last_name} #{member.first_name}", admin_member_path(member) %>
               </td>
               <!--メールアドレス-->
               <td><%= member.email %></td>
               <!--会員ステータス-->
               <td>
                 <% if member.is_deleted == false %>
-                  有効
+                  <span class="text-success">有効</span>
                 <% elsif %>
-                  退会
+                  <span>退会</span>
                 <% end %>
               </td>
             </tr>

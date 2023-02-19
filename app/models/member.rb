@@ -13,6 +13,7 @@ class Member < ApplicationRecord
   validates :address, presence:true
   VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
   validates :phone_number, presence:true, format: { with: VALID_PHONE_REGEX }
+  validates :is_deleted, inclusion: [true, false]
 
   def active_for_authentication?
     super && (is_deleted == false)
