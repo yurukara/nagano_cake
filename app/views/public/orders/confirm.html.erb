@@ -25,6 +25,8 @@
       </tr>
     <% end %>
 </table>
+
+
 <table>
   <tr>
     <th>送料</th>
@@ -42,3 +44,21 @@
     <!--カート内の商品の合計＋送料を計算して、整数として表示させています。-->
   </tr>
 </table>
+
+<table>
+  <tr>
+    <th>支払方法</th>
+    <td><%= @order.payment_method %></td>
+  </tr>
+  <tr>
+    <th>お届け先</th>
+    <td>
+      <%= @order.post_code %>
+      <%= @order.address %>
+      <%= @order.shipping_name %>
+    </td>
+  </tr>
+</table>
+
+<%= render 'success_confirm', orders: @orders %>
+<!--注文確定ボタンのテンプレ-->
