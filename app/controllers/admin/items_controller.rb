@@ -1,5 +1,4 @@
 class Admin::ItemsController < ApplicationController
-
   before_action :authenticate_admin!
 
   def index
@@ -20,9 +19,20 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
+     @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item)
+    else
+      render :edit
+    end
 
   end
 
@@ -32,10 +42,5 @@ class Admin::ItemsController < ApplicationController
     params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active, :image)
   end
 
-  private
-
-  def item_params
-    params.require(:item).permit(:genre_id,:name, :introduction, :price, :is_active, :image)
-  end
 end
 
