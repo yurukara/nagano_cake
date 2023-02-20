@@ -1,4 +1,7 @@
 class Public::OrdersController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  # ↑　トークン認証する為の記述
+  
   def new
     @order = Order.new
     @address = Address.new
@@ -39,6 +42,6 @@ class Public::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:mamber_id, :postage, :address, :post_code, :shipping_name, :total_payment, :payment_method, :order_status)
+    params.require(:order).permit(:member_id, :postage, :address, :post_code, :shipping_name, :total_payment, :payment_method, :order_status)
   end
 end
