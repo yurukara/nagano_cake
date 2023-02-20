@@ -6,8 +6,8 @@
               <div>
                   <h2><%= @item.name %></h2></p>
                   <p><%= @item.introduction %></p>
-                  <p><%= @item.number_to_currency(@item.price) %><span>(税込)</span></p>
-                  <p><%= image_tag @item.get_item_image %></p>
+                  <p><%= @item.number_to_currency %><span>(税込)</span></p>
+                  <p><%= image_tag @item.get_item_image(200,200) %></p>
                   <%= form_with(model: @cart_item, url: cart_items_path, mehod: :post, local: true)do |f| %>
                   <%= f.select :quantity, *[1..50] %>
                   <%= f.hidden_field :item_id, :value => @item.id %>
