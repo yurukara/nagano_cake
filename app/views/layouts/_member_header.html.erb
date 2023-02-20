@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/"><span>Nagoya Cake</span></a>
+      <a class="navbar-brand" href="/"><span>Nagano Cake</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -13,12 +13,10 @@
                         <%= link_to "マイページ/", my_page_path %>
                       </li>
                       <li>
-                        <%= link_to "商品一覧/", my_page_path %>
-                        <!--実装次第パスの部分を書き換えて下さい-->
+                        <%= link_to "商品一覧/", items_path %>
                       </li>
                       <li>
-                        <%= link_to "カート/", my_page_path %>
-                        <!--実装次第パスの部分を書き換えて下さい-->
+                        <%= link_to "カート/", cart_items_path %>
                       </li>
                       <li>
                         <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
