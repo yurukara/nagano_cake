@@ -10,12 +10,12 @@
           <% @items.each do |item| %>
             <div class="flex-column mr-3">
                 <p>
-                    <%= image_tag item.get_item_image %>
+                    <%= image_tag item.get_item_image(200,200) %>
                 </p>
                 <%= link_to item_path(item) do %>
                 <p><%= item.name %></p>
                 <% end %>
-                <p><%= item.number_to_currency(item.price) %></p>
+                <p><%= item.number_to_currency %></p>
             </div>
           <% end %>
         </div>
