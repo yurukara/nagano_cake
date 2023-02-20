@@ -1,5 +1,5 @@
 class Public::CartItemsController < ApplicationController
-
+  before_action :authenticate_member!
 
   def index
     @cart_items = current_member.cart_items
