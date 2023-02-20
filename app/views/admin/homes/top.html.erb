@@ -1,5 +1,27 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
-
-<%= link_to 'login', new_admin_session_path %>
-<%= link_to 'logout', destroy_admin_session_path, method: :delete %>
+<div class="container ">
+  <div class="row mx-auto">
+    <div class="col-md-12 mx-auto">
+      <label class="h4 bg-light pr-3 pl-3">注文履歴一覧</label>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.created_at %></td>
+              <td><%= order.member."#{member.last_name}#{member.first_name}" %></td>
+              <td><%= order.quantity %></td>
+              <td><%= order.order_status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div> 
+  </div>
+</div>
