@@ -5,4 +5,8 @@ class Order < ApplicationRecord
   
   enum payment_method: ["クレジットカード", "銀行振込"]
   
+  def set_date
+    created_at.strftime("%y/%-m/%-d/ %-H:%M:%S")
+  end
+  
 end
