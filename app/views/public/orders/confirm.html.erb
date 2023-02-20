@@ -1,2 +1,64 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+<h4>注文情報確認</h4>
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+  </tr>
+  
+  <% total = 0 %>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td>
+          <!--画像表示-->
+          <%= image_tag cart_item.item.get_item_image(60,50) %>
+          <%= cart_item.item.name %>
+        </td>
+        <td><%= (cart_item.item.price*1.1).to_i %></td>
+        <td><%= cart_item.quantity %></td>
+        <td>
+          <% subtotal = ((cart_item.item.price*cart_item.quantity)*1.1).to_i %>
+          <%= subtotal %>
+        </td>
+        <% total += ((cart_item.item.price*cart_item.quantity)*1.1).to_i %>
+      </tr>
+    <% end %>
+</table>
+
+
+<table>
+  <tr>
+    <th>送料</th>
+    <% @order.postage = 800 %>
+    <td><%= @order.postage %></td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td><%= total %></td>
+  </tr>
+  <tr>
+    <th>請求金額</th>
+    <% @order.total_payment = @order.postage + total.to_i %>
+    <td><%= @order.total_payment %></td>
+    <!--カート内の商品の合計＋送料を計算して、整数として表示させています。-->
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>支払方法</th>
+    <td><%= @order.payment_method %></td>
+  </tr>
+  <tr>
+    <th>お届け先</th>
+    <td>
+      <%= @order.post_code %>
+      <%= @order.address %>
+      <%= @order.shipping_name %>
+    </td>
+  </tr>
+</table>
+
+<%= render 'success_confirm', orders: @orders %>
+<!--注文確定ボタンのテンプレ-->

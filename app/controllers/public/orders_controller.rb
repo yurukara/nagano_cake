@@ -1,4 +1,7 @@
 class Public::OrdersController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  # ↑　トークン認証する為の記述
+  
   def new
     @order = Order.new
     @address = Address.new
@@ -7,7 +10,7 @@ class Public::OrdersController < ApplicationController
   end
   
   def confirm
-    @order = Order.new(order_params)
+      @order = Order.new(order_params)
     if params[:order][:address_option] == "0"
       @order.post_code = current_member.postal_code
       @order.address = current_member.address
@@ -26,19 +29,39 @@ class Public::OrdersController < ApplicationController
     end
     @cart_items = current_member.cart_items.all
   end
+  
+  def create
+    @order = Order.new(order_params)
+    @order.member_id = current_member.id
+    @order.save
+    
+    current_member.cart_items.each do |cart_item|
+      @order_item = OrderItem.new
+      @order_item.item_id = cart_item.item_id
+      @order_item.quantity = cart_item.quantity
+      @order_item.tax_in_price = cart_item.item.with_tax_price
+      @order_item.order_id = @order.id
+      @order_item.save
+    end
+    
+    current_member.cart_items.destroy_all
+    redirect_to orders_thanks_path
+  end
 
   def thanks
   end
 
   def index
+    @orders = current_member.orders
   end
 
   def show
+    
   end
   
   private
   
   def order_params
-    params.require(:order).permit(:mamber_id, :postage, :address, :post_code, :shipping_name, :total_payment, :payment_method, :order_status)
+    params.require(:order).permit(:member_id, :postage, :address, :post_code, :shipping_name, :total_payment, :payment_method, :order_status)
   end
 end

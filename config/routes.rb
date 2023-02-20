@@ -29,9 +29,10 @@ Rails.application.routes.draw do
     patch 'members/withdraw' => 'members#withdraw',as:'members_withdraw'
     resources :cart_items, only: [:index,:update,:create,:destroy]
     delete 'cart_items' => 'cart_items#destroy_all',as:'destroy_all'
+    get 'orders/thanks' => 'orders#thanks',as:"orders_thanks"
     resources :orders, only: [:new,:create,:index,:show]
     post 'orders/confirm' => 'orders#confirm',as:"orders_confirm"
-    get 'orders/thanks' => 'orders#thanks',as:'orders_thanks'
+    
     resources :addresses, only: [:index,:edit,:create,:update,:destroy]
   end
 
