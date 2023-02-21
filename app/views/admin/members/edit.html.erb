@@ -10,32 +10,7 @@
             <td scope="col" style="width: 30%"></td>
             <td scope="col" style="width: 10%"></td>
           </tr>
-          <tr>
-            <td class="align-middle">氏名</td>
-            <td><%= f.text_field :last_name, autofocus: true, class: "form-control" %></td>
-            <td><%= f.text_field :first_name, autofocus: true, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td class="align-middle">フリガナ</td>
-            <td><%= f.text_field :last_name_kana, autofocus: true, class: "form-control" %></td>
-            <td><%= f.text_field :first_name_kana, autofocus: true, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td class="align-middle">郵便番号</td>
-            <td><%= f.text_field :postal_code, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td class="align-middle">住所</td>
-            <td colspan="3"><%= f.text_field :address, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td class="align-middle">電話番号</td>
-            <td><%= f.text_field :phone_number, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td class="align-middle">メールアドレス</td>
-            <td><%= f.text_field :email, class: "form-control" %></td>
-          </tr>
+          <%= render 'edit', f: f %>
           <tr>
             <td class="align-middle">会員ステータス</td>
             <td>

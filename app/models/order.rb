@@ -4,6 +4,11 @@ class Order < ApplicationRecord
   belongs_to :member
 
   enum payment_method: ["クレジットカード", "銀行振込"]
+
   enum order_status: {payment_waiting: 0,  payment_confirmation: 1, in_production: 2, preparing_delivery: 3, delivered: 4}
+  
+  def set_date
+    created_at.strftime("%Y/%-m/%-d/ %-H:%M:%S")
+  end
 
 end
