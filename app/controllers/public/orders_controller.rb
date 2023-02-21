@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_member!
   skip_before_action :verify_authenticity_token
   # ↑　トークン認証する為の記述
   
@@ -56,7 +57,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
   end
   
   private
