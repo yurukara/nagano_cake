@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_member!
   skip_before_action :verify_authenticity_token
   # ↑　トークン認証する為の記述
   

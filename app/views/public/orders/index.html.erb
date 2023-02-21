@@ -13,8 +13,16 @@
           <% @orders.each do |order| %>
           <tr>
             <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= order.address %></td>
-            <td><%= order.items.name %></td>
+            <td>
+              <%= order.post_code %>
+              <%= order.address %>
+              <%= order.shipping_name %>
+            </td>
+            <td>
+              <% order.order_items.each do |o| %>
+                <%= o.item.name %>
+              <% end %>
+            </td>
             <td><%= order.order_status %></td>
             <td><%= link_to '詳細画面', order_path(order.id), class: "btn btn-sm btn-success" %></td>
           <% end %>
