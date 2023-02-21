@@ -1,9 +1,6 @@
 class Public::OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token
-<<<<<<< HEAD
-=======
   # ↑　トークン認証する為の記述
->>>>>>> 2f2e47470d73a0add9f36b26b4004f60be698d5f
   
   def new
     @order = Order.new
