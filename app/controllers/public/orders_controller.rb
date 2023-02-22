@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_member!
   skip_before_action :verify_authenticity_token
   # ↑　トークン認証する為の記述
   
@@ -8,7 +9,7 @@ class Public::OrdersController < ApplicationController
     @address.member_id = current_member.id
     @addresses = current_member.addresses.all
   end
-  
+
   def confirm
       @order = Order.new(order_params)
     if params[:order][:address_option] == "0"
@@ -56,11 +57,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
   end
-  
+
   private
-  
+
   def order_params
     params.require(:order).permit(:member_id, :postage, :address, :post_code, :shipping_name, :total_payment, :payment_method, :order_status)
   end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
 }
 
-  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, controllers: {
   sessions: "admin/sessions"
 }
 
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :order_details, only: [:update]
     end
   end
-
+  
   scope module: :public do
     root to: "homes#top"
     get 'about' => 'homes#about'
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     get 'orders/thanks' => 'orders#thanks',as:"orders_thanks"
     resources :orders, only: [:new,:create,:index,:show]
     post 'orders/confirm' => 'orders#confirm',as:"orders_confirm"
-    
+
     resources :addresses, only: [:index,:edit,:create,:update,:destroy]
   end
 

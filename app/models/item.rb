@@ -29,6 +29,11 @@ class Item < ApplicationRecord
   def with_tax_price
     (price*1.1).floor
   end
+  
+  # 注文商品の合計金額(請求金額　-　送料)
+  def sum_of_price
+    item.price*quantity
+  end
 
   def self.looks(word)
     @items = Item.where("name LIKE?","%#{word}%")
