@@ -10,9 +10,10 @@ module NaganoCake
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    
+
     config.i18n.default_locale = :ja
     # ↑　railsアプリケーションのデフォルトの言語を日本語にしています。
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s] # 追記
 
     # Configuration for the application, engines, and railties goes here.
     #
