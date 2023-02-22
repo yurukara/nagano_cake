@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     get 'orders/thanks' => 'orders#thanks',as:"orders_thanks"
     resources :orders, only: [:new,:create,:index,:show]
     post 'orders/confirm' => 'orders#confirm',as:"orders_confirm"
-    
+
     resources :addresses, only: [:index,:edit,:create,:update,:destroy]
   end
 
