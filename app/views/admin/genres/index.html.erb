@@ -5,7 +5,7 @@
       <table class="table table-borderless mt-4" style="width: 50%">
         <%= form_with model: @genre, url: admin_genres_path, method: :post, local:true do |f| %>
         <tr>
-          <td class="align-bottom" scope="col" style="width: 20%"><%= f.label :name, "ジャンル名" %></td>
+          <td class="align-bottom mb-0" scope="col" style="width: 20%"><%= f.label :name, "ジャンル名" %></td>
           <td class="align-middle" scope="col" style="width: 20%"><%= f.text_field :name, placeholder: "ジャンル名" %></td>
           <td class="text-center" scope="col" style="width: 30%"><%= f.submit "新規登録", class: "btn btn-success" %></td>
         </tr>
