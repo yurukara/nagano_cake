@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <h2>注文履歴詳細</h2>
+      <h4>注文履歴詳細</h4>
       <table class="table table-borderless">
         <tr>
           <th>購入者</th>
@@ -52,7 +52,6 @@
             <td>
               <%= form_with model: [@order,order_item], url: admin_order_order_detail_path(@order,order_item), method: :patch do |f| %>
               <%= f.select :production_status, OrderItem.production_statuses.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
-
               <%= f.submit "更新", class:"btn btn-success btn-sm" %>
               <% end %>
             </td>
