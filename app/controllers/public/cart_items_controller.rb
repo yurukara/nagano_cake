@@ -1,6 +1,6 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_member!
-  before_action :filter_active_items, only: [:create]
+
 
   def index
     @cart_items = current_member.cart_items
@@ -50,14 +50,6 @@ class Public::CartItemsController < ApplicationController
     params.require(:cart_item).permit(:quantity,:member_id,:item_id)
   end
 
-  def filter_active_items
-    if params[:cart_item][:items].present?
-      params[:cart_item][:items].select! do |item_id|
-      Item.find(item_id).is_active == true
-      end
-    else
-      redirect_to root_path
-    end
-  end
+
 
 end
