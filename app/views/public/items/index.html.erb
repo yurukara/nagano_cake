@@ -5,12 +5,14 @@
         </div>
         
           <div class= 'col-md-10'>
-            <div class= 'm-3'>
+            <div class= 'm-3'> 
+              <h4 class='font-weight-bold' style= 'display: inline-block;'>商品一覧</h4> 
+                <span>(全<%= @count%>件)</span>  
                 <div class= 'd-flex flex-wrap'> 
                   <% @items.each do |item| %>
                     <div> 
                         <div class= 'p-2'> 
-                            <%= image_tag item.get_item_image(300,300) %>
+                            <%= image_tag item.get_item_image(250,250) %>
                         </div>
                         <%= link_to item_path(item) do %>
                         <div><%= item.name %></div>
