@@ -3,9 +3,11 @@ class Public::ItemsController < ApplicationController
     @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @items = @genre.items
+      @items = @genre.items.page(params[:page]).per(6)
+      @count = @genre.items.count 
     else
-      @items = Item.all
+      @items = Item.page(params[:genre_id]).per(6) 
+      @count = Item.all.count
     end
   end
 
