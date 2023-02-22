@@ -54,7 +54,7 @@ class Public::CartItemsController < ApplicationController
     if params[:cart_item][:items].present?
       params[:cart_item][:items].select! do |item_id|
       Item.find(item_id).is_active == true
-     end
+      end
     else
       redirect_to root_path
     end
