@@ -265,9 +265,7 @@ DEPENDENCIES
   enum_help
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
-
   kaminari (~> 1.2.1)
-
   listen (~> 3.3)
   pry-rails
   puma (~> 5.0)
