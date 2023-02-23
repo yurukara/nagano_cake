@@ -3,8 +3,8 @@
         <div class='col-2'>
           <%= render 'genrs_search', genres: @genres %>
         </div>
-                  <%= form_with model: @cart_item, url: cart_items_path, mehod: :post, local: true do |f| %>
 
+           <%= form_with(model: @cart_item, url: cart_items_path, mehod: :post, local: true)do |f| %>
               <div class= 'col-10, m-3 d-flex align-items-center'>
                 <div style= 'display: inline-block;'>
                   <div><%= image_tag @item.get_item_image(400,400) %></div>
@@ -22,6 +22,5 @@
                 </div>
                 </div>
               </div>
-
   </div>
 </div>
