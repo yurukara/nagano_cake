@@ -1,70 +1,90 @@
-<h4>注文履歴詳細画面</h1>
-<table>
-  <th>注文情報</th>
-  <tr>
-    <td>注文日</td>
-    <td>配送先</td>
-    <td>支払方法</td>
-    <td>入金確認</td>
-  </tr>
-  <tr>
-    <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-    <td>
-      <%= @order.post_code %>
-      <%= @order.address %>
-      <%= @order.shipping_name %>
-    </td>
-    <td>
-      <%= @order.payment_method %>
-    </td>
-    <td>
-      <%= @order.order_status_i18n %>
-    </td>
-  </tr>
-</table>
+<label class= 'bg-white m-3 pr-3 pl-3 h4 font-weight-bold'>注文履歴詳細画面</label>
+  <div class='container px-6 px-sm-0'>
+    <div class='row'>
+      <div class='col-8'>
+          <table table class='table'>
+            <thead>
+                <label class= 'font-weight-bold'>注文情報</label>
 
-<table>
-  <th>請求情報</th>
-  <tr>
-    <td>
-      商品合計
-    </td>
-    <td>
-      配送料
-    </td>
-    <th>ご請求額</th>
-  </tr>
+                <!--注文日-->
+                <tr class= 'table-bordered'>
+                  <td class= 'table-secondary'  scope="col" style="width: 25%;">注文日</td>
+                  <td class= 'bg-white'><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+                </tr>
+                <!--配送先-->
+                <tr class= 'table-bordered'>
+                  <td class= 'table-secondary' scope="col" style="width: 25%">配送先</td>
+                  <td class= 'bg-white'>
+                    〒<%= @order.post_code %></br>
+                    <%= @order.address %></br>
+                    <%= @order.shipping_name %>
+                  </td>
+                </tr>
+                <!--支払い方法-->
+                <tr class= 'table-bordered'>
+                  <td class= 'table-secondary' scope="col" style="width: 25%">支払方法</td>
+                  <td class= 'bg-white'><%= @order.payment_method %></td>
+                </tr>
+                <!--入金確認-->
+                <tr class= 'table-bordered'>
+                  <td class= 'table-secondary' scope="col" style="width: 25%">入金確認</td>
+                  <td class= 'bg-white'><%= @order.order_status_i18n %></td>
+                </tr>
+            </thead>
+          </table>
+      </div>
+      <div class='col-4'>
+          <table table class='table'>
+            <thead>
+                <label class= 'font-weight-bold'>請求情報</label>
 
-  <tr>
-    <% order_items_total = 0 %>
-    <!--注文商品全部を合わせた時の価格を求めています。-->
-    <td>
-      <% @order_items.each do |o| %>
-      <% order_items_total += o.tax_in_price %>
-      <% end %>
-      <%= order_items_total %>
-    </td>
-    <td><%= @order.postage %></td>
-    <td><%= @order.total_payment %></td>
-  </tr>
-</table>
+                <!--商品合計-->
+              <tr class= 'table-bordered'>
+                <td class= 'table-secondary' scope="col" style="width: 40%">商品合計</td>
+                <% order_items_total = 0 %>
+                <!--注文商品全部を合わせた時の価格を求めています。-->
+                <td class= 'bg-white'>
+                  <% @order_items.each do |o| %>
+                  <% order_items_total += o.tax_in_price %>
+                  <% end %>
+                  <%= order_items_total.floor.to_s(:delimited) %>
+                </td>
+              </tr>
+                <!--配送料-->
+              <tr class= 'table-bordered'>
+                <td class= 'table-secondary' scope="col" style="width: 40%">配送料</td>
+                <td class= 'bg-white'><%= @order.postage %></td>
+              </tr>
+                <!--請求額-->
+              <tr class= 'table-bordered'>
+               <td class= 'table-secondary' scope="col" style="width: 40%">ご請求額</th>
+               <td class= 'bg-white'><%= @order.total_payment.floor.to_s(:delimited) %></td>
+              </tr>
 
-<table>
-  <tr>
-    <th>注文内容</th>
-    <td>商品</td>
-    <td>単価(税込)</td>
-    <td>個数</td>
-    <td>小計</td>
-  </tr>
-    <% @order_items.each do |item| %>
-  <tr>
-    <td></td>
-    <td><%= item.item.name %></td>
-    <td><%= item.tax_in_price %></td>
-    <td><%= item.quantity %></td>
-    <td><%= (item.tax_in_price*item.quantity) %> </td>
-    <!--商品ごとの小計を出しています(例：りんご(100円)×２個 =  4円-->
-  </tr>
-    <% end %>
-</table>
+            </thead>
+          </table>
+      </div>
+    </div>
+
+          <table table class='table' style="width: 80%">
+            <thead>
+              <label class= 'font-weight-bold'>注文内容</label>
+                <tr class= 'table-bordered'>
+                  <td class= 'table-secondary' scope="col" style="width: 25%">商品</td>
+                  <td class= 'table-secondary' scope="col" style="width: 25%">単価(税込)</td>
+                  <td class= 'table-secondary' scope="col" style="width: 25%">個数</td>
+                  <td class= 'table-secondary' scope="col" style="width: 25%">小計</td>
+                </tr>
+
+                  <% @order_items.each do |item| %>
+                <tr class= 'table-bordered'>
+                  <td class= 'bg-white' style="width: 50%"><%= item.item.name %></br></td>
+                  <td class= 'bg-white' style="width: %"><%= item.tax_in_price.floor.to_s(:delimited) %></td>
+                  <td class= 'bg-white'><%= item.quantity %></td>
+                  <td class= 'bg-white'><%= (item.tax_in_price*item.quantity).floor.to_s(:delimited) %> </td>
+              <!--商品ごとの小計を出しています(例：りんご(100円)×２個 =  4円-->
+                  <% end %>
+                </tr>
+          </table>
+
+  </div>
