@@ -2,9 +2,9 @@
   <div class="row mx-auto mt-3">
     <div class= "col-7 mt-3 mx-auto">
        <label class="h4 bg-light pr-3 pl-3 mp-0">商品編集</label>
+       <%= render "admin/admin/shared/error_messages", resource: @item %>
+       <%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
       <table class="table mt-4 table-borderless bg-white">
-        <%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
-          <%= render "admin/admin/shared/error_messages", resource: @item %>
            <tr>
              <td><%= f.label :image, '商品画像' %></td>
              <td> <%= f.file_field :image, accept: "image/*" %></td>
@@ -43,8 +43,8 @@
             </td>
             <td></td>
           </tr>
-      <% end %>
       </table>
+      <% end %>
     </div>
   </div>
 </div>
