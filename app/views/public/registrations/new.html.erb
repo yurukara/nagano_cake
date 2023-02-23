@@ -2,6 +2,7 @@
   <div class="row mt-5 ml-5 mb-3">
     <h4 class="bg-light pl-3 pr-3">新規会員登録</h4>
     <%= flash[:notice] %>
+    <%= render "public/shared/error_messages", resource: resource %>
   </div>
   <div class="row">
     <table class="table table-sm table-borderless">

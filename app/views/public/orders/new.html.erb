@@ -37,9 +37,7 @@
               <td class="text-right"><%= f.radio_button :address_option, 2 %></td>
               <td>
                 <%= f.label :order_address, "新しいお届け先" %>
-                <%= form_with model: @address do |f| %>
                   <%= render 'public/addresses/new_address', f: f %>
-                <% end %>
               </td>
               <td></td>
             </tr>
