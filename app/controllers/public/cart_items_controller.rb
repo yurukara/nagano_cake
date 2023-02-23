@@ -1,6 +1,5 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_member!
-  before_action :filter_active_items, only: [:create]
 
   def index
     @cart_items = current_member.cart_items
@@ -27,15 +26,16 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = CartItem.find(params[:id])
-    cart_item.update(cart_item_params)
-    redirect_to request.referer
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    @total = current_member.cart_items.inject(0) {|sum, item| sum + item.subtotal}
   end
 
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
-    redirect_to request.referer
+    @cart_items = current_member.cart_items
+    @total = current_member.cart_items.inject(0) {|sum, item| sum + item.subtotal}
   end
 
   def destroy_all
@@ -48,16 +48,6 @@ class Public::CartItemsController < ApplicationController
 
   def cart_item_params
     params.require(:cart_item).permit(:quantity,:member_id,:item_id)
-  end
-
-  def filter_active_items
-    if params[:cart_item][:items].present?
-      params[:cart_item][:items].select! do |item_id|
-      Item.find(item_id).is_active == true
-     end
-    else
-      redirect_to root_path
-    end
   end
 
 end
