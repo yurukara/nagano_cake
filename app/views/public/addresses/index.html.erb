@@ -4,6 +4,7 @@
 <%= form_with model: address do |f| %>
   <%= render 'new_address', f: f %>
 <% end %>
+
   <div class='container px-6 px-sm-0'>
     <table class="table">
       <thead class='table-dark'>
@@ -15,7 +16,7 @@
           <!--上にedit、deleteが入ります-->
         </tr>
       </thead>
-      
+
       <tbody class='table-bordered'>
           <% @addresses.each do |address| %>
           <tr>
@@ -28,9 +29,8 @@
             </td>
         <% end %>
           </tr>
-        
+
       </tbody>
 
     </table>
   </div>
- 
