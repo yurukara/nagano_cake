@@ -2,12 +2,15 @@
   <nav class="navbar navbar-expand-lg navbar-white bg-info">
     <div class="container">
       <a class="navbar-brand text-white" href="/">
-        <span class="h2 text-white font-weight-bold">Nagano Cake</span>
+        <span class="h2 text-white font-weight-bold mr-4">Nagano Cake</span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
+      <% if member_signed_in? %>
+        <label class="h5 text-white ">ようこそ<%= current_member.last_name %>様！</label>
+      <% end %>
       <div class="navbar">
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
