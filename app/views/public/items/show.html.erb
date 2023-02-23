@@ -3,25 +3,22 @@
         <div class='col-2'>
           <%= render 'genrs_search', genres: @genres %>
         </div>
-
-              <div class= 'col-10, m-3 d-flex align-items-center'>  
+           <%= form_with(model: @cart_item, url: cart_items_path, mehod: :post, local: true)do |f| %>
+              <div class= 'col-10, m-3 d-flex align-items-center'>
                 <div style= 'display: inline-block;'>
                   <div><%= image_tag @item.get_item_image(400,400) %></div>
-
-                  <%= form_with(model: @cart_item, url: cart_items_path, mehod: :post, local: true)do |f| %>
-                </div> 
+                </div>
                 <div style= 'display: inline-block;', class= 'p-3 m-3'>
                 <div style= 'text-align: center;'>
-                  <h2 class= 'font-weight-bold m-1'><%= @item.name %></h2> 
+                  <h2 class= 'font-weight-bold m-1'><%= @item.name %></h2>
                   <div><%= @item.introduction %></div>
                   <div class= 'm-3 font-weight-bold'><span>¥</span><%= @item.number_to_currency %><span>(税込)</span></div>
-                  <div class= 'm-3'><%= f.select :quantity, *[1..50] %></div> 
-                  <div><%= f.hidden_field :item_id, :value => @item.id %></div> 
+                  <div class= 'm-3'><%= f.select :quantity, *[1..50] %></div>
+                  <div><%= f.hidden_field :item_id, :value => @item.id %></div>
                   <div><%= f.submit "カートに入れる", class: "btn btn-success"%></div>
                   <% end %>
                 </div>
                 </div>
               </div>
-
   </div>
 </div>

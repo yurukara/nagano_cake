@@ -1,6 +1,6 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_member!
-  before_action :filter_active_items, only: [:create]
+
 
   def index
     @cart_items = current_member.cart_items
@@ -18,9 +18,13 @@ class Public::CartItemsController < ApplicationController
         cart_item.save
         redirect_to cart_items_path
       end
-    else @cart_item.save
+    else
+      if Item.find(params[:cart_item][:item_id]).is_active == true
+        @cart_item.save
         redirect_to cart_items_path
-
+      else
+        redirect_to root_path
+      end
         #個数の制限は要件にない部分なので、必要に応じて削除orコメントアウトで対応します。
 
     end
@@ -48,16 +52,6 @@ class Public::CartItemsController < ApplicationController
 
   def cart_item_params
     params.require(:cart_item).permit(:quantity,:member_id,:item_id)
-  end
-
-  def filter_active_items
-    if params[:cart_item][:items].present?
-      params[:cart_item][:items].select! do |item_id|
-      Item.find(item_id).is_active == true
-     end
-    else
-      redirect_to root_path
-    end
   end
 
 end
