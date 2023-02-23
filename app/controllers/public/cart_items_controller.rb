@@ -18,9 +18,13 @@ class Public::CartItemsController < ApplicationController
         cart_item.save
         redirect_to cart_items_path
       end
-    else @cart_item.save
+    else
+      if Item.find(params[:cart_item][:item_id]).is_active == true
+        @cart_item.save
         redirect_to cart_items_path
-
+      else
+        redirect_to root_path
+      end
         #個数の制限は要件にない部分なので、必要に応じて削除orコメントアウトで対応します。
 
     end
@@ -49,7 +53,6 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:quantity,:member_id,:item_id)
   end
-
 
 
 end
