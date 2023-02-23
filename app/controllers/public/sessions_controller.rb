@@ -17,11 +17,14 @@ class Public::SessionsController < Devise::SessionsController
     @member = Member.find_by(email: params[:member][:email])
     return if !@member
       if @member.valid_password?(params[:member][:password]) && @member.is_deleted == false
+        elsif unless @member.valid_password?(params[:member][:password])
+          flash[:alert] = 'パスワードが違います'
+          redirect_to new_member_session_path
+        end
       else
         flash[:alert] = '退会済みです。再度新規登録を行なってください。'
         redirect_to root_path
       end
-
   end
 
 

@@ -13,7 +13,7 @@
         </tr>
         <tr>
           <th>配送先</th>
-          <td>〒<%= @order.member.postal_code.to_s.insert(3, "-") %> <%= @order.member.address %><br><%= @order.shipping_name %></td>
+          <td>〒<%= @order.post_code.to_s.insert(3, "-") %> <%= @order.address %><br><%= @order.shipping_name %></td>
         </tr>
         <tr>
           <th>支払方法</th>
