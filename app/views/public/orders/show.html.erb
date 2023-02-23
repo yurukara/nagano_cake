@@ -18,7 +18,7 @@
       <%= @order.payment_method %>
     </td>
     <td>
-      <%= @order.order_status %>
+      <%= @order.order_status_i18n %>
     </td>
   </tr>
 </table>
@@ -34,8 +34,8 @@
     </td>
     <th>ご請求額</th>
   </tr>
-   
-  <tr>   
+
+  <tr>
     <% order_items_total = 0 %>
     <!--注文商品全部を合わせた時の価格を求めています。-->
     <td>
@@ -46,9 +46,9 @@
     </td>
     <td><%= @order.postage %></td>
     <td><%= @order.total_payment %></td>
-  </tr> 
+  </tr>
 </table>
-  
+
 <table>
   <tr>
     <th>注文内容</th>
@@ -61,7 +61,7 @@
   <tr>
     <td></td>
     <td><%= item.item.name %></td>
-    <td><%= item.tax_in_price %></td> 
+    <td><%= item.tax_in_price %></td>
     <td><%= item.quantity %></td>
     <td><%= (item.tax_in_price*item.quantity) %> </td>
     <!--商品ごとの小計を出しています(例：りんご(100円)×２個 =  4円-->

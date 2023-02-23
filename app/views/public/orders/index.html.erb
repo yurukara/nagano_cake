@@ -23,14 +23,13 @@
                 <%= o.item.name %>
               <% end %>
             </td>
-            <td><%= order.order_status %></td>
+            <td><%= order.order_status_i18n %></td>
             <td><%= link_to '詳細画面', order_path(order.id), class: "btn btn-sm btn-success" %></td>
           <% end %>
           </tr>
-          
-        
+
+
       </tbody>
 
     </table>
   </div>
- 
