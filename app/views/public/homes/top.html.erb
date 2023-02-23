@@ -3,14 +3,7 @@
 
   <div class="row mt-4" >
 
-    <div class="col-lg-2 border p-0" style="height: 280px;">
-      <p class="text-center border-bottom font-weight-bold">ジャンル検索</p>
-      <% @genres.each do |genre| %>
-      <ul class="pl-3">
-      <li class="list-unstyled"><%= link_to genre.name, items_path(genre_id: genre.id) %></li>
-      </ul>
-      <% end %>
-    </div>
+    <%= render 'public/items/genrs_search', genres: @genres %>
 
     <div class="col-lg-7 d-flex justify-content-center align-items-center ml-3 bg-image shadow-lg" style="background-image: url('assets/okasi.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover;" >
       <p class="d-inline-block text-light pt-4 pr-5 pb-4 ml-5" style="background-color: rgba(40, 40, 40, 0.6);">

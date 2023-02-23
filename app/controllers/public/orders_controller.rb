@@ -2,7 +2,7 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_member!
   skip_before_action :verify_authenticity_token
   # ↑　トークン認証する為の記述
-  
+
   def new
     @order = Order.new
     @address = Address.new
@@ -22,7 +22,7 @@ class Public::OrdersController < ApplicationController
       @order.address = ship.address
       @order.shipping_name = ship.shipping_name
     elsif params[:order][:address_option] = "2"
-      @order.post_code = params[:order][:shipping_post_code]
+      @order.post_code = params[:order][:post_code]
       @order.address = params[:order][:shipping_address]
       @order.shipping_name = params[:order][:shipping_name]
     else
@@ -30,12 +30,12 @@ class Public::OrdersController < ApplicationController
     end
     @cart_items = current_member.cart_items.all
   end
-  
+
   def create
     @order = Order.new(order_params)
     @order.member_id = current_member.id
     @order.save
-    
+
     current_member.cart_items.each do |cart_item|
       @order_item = OrderItem.new
       @order_item.item_id = cart_item.item_id
@@ -44,7 +44,7 @@ class Public::OrdersController < ApplicationController
       @order_item.order_id = @order.id
       @order_item.save
     end
-    
+
     current_member.cart_items.destroy_all
     redirect_to orders_thanks_path
   end
