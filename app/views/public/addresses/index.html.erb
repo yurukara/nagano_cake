@@ -1,12 +1,10 @@
 <%= flash[:notice] %>
 <h1>配送先登録/一覧</h1>
 
-<%= render 'new_address', address: @address %>
-<!--配送先登録のテンプレ-->
-<%= form_with model: @address do |f| %>
-<%= f.submit '新規登録', class: 'btn btn-success' %>
+<%= form_with model: address do |f| %>
+  <%= render 'new_address', f: f %>
 <% end %>
-  
+
   <div class='container px-6 px-sm-0'>
     <table class="table">
       <thead class='table-dark'>
@@ -18,7 +16,7 @@
           <!--上にedit、deleteが入ります-->
         </tr>
       </thead>
-      
+
       <tbody class='table-bordered'>
           <% @addresses.each do |address| %>
           <tr>
@@ -31,9 +29,8 @@
             </td>
         <% end %>
           </tr>
-        
+
       </tbody>
 
     </table>
   </div>
- 
