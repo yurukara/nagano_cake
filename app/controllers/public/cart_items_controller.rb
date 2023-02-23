@@ -29,15 +29,16 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = CartItem.find(params[:id])
-    cart_item.update(cart_item_params)
-    redirect_to request.referer
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    @total = current_member.cart_items.inject(0) {|sum, item| sum + item.subtotal}
   end
 
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
-    redirect_to request.referer
+    @cart_items = current_member.cart_items
+    @total = current_member.cart_items.inject(0) {|sum, item| sum + item.subtotal}
   end
 
   def destroy_all

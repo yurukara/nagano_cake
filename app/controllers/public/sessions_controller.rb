@@ -5,6 +5,11 @@ class Public::SessionsController < Devise::SessionsController
   before_action :member_state, only:[:create]
 
   def after_sign_in_path_for(resource)
+    flash[:alert] = 'ログインしました。'
+    root_path
+  end
+
+  def after_sign_out_path_for(resource)
     root_path
   end
 
@@ -13,6 +18,7 @@ class Public::SessionsController < Devise::SessionsController
     return if !@member
       if @member.valid_password?(params[:member][:password]) && @member.is_deleted == false
       else
+        flash[:alert] = '退会済みです。再度新規登録を行なってください。'
         redirect_to root_path
       end
 

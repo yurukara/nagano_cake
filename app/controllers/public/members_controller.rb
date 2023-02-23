@@ -11,6 +11,7 @@ class Public::MembersController < ApplicationController
   def update
     @member = current_member
     if @member.update(member_params)
+      flash[:alert] = '更新が完了しました。'
       redirect_to my_page_path
     else
       render :edit
@@ -23,6 +24,8 @@ class Public::MembersController < ApplicationController
   def withdraw
     current_member.update(is_deleted: true)
     # 遷移先はルートパスであっている？
+    reset_session
+    flash[:alert] = '退会しました。'
     redirect_to root_path
   end
 
