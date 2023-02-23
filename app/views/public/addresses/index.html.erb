@@ -1,7 +1,7 @@
 <%= flash[:notice] %>
 <h1>配送先登録/一覧</h1>
 
-<%= form_with model: address do |f| %>
+<%= form_with model: @address do |f| %>
   <%= render 'new_address', f: f %>
 <% end %>
 
