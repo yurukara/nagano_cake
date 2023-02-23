@@ -6,7 +6,7 @@ class Public::ItemsController < ApplicationController
       @items = @genre.items.page(params[:page]).per(6)
       @count = @genre.items.count 
     else
-      @items = Item.page(params[:genre_id]).per(6) 
+      @items = Item.page(params[:page]).per(6) 
       @count = Item.all.count
     end
   end
