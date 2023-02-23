@@ -1,15 +1,18 @@
-<%= form_with model: address do |f| %>
-    <div class="field">
-    <%= f.label :postal_code, '郵便番号' %>
-    <%= f.text_field :postal_code, autofocus: true, placeholder: '0000000' %>
-
-    <div class="field">
-    <%= f.label :address, '住所' %>
-    <%= f.text_field :address, autofocus: true,  placeholder: '東京都渋谷区代々木神園町0-0', class: "w-50 address-textarea" %>
-    <!--class　w-50の部分で横幅変えてます。清原-->
-    <div class="field">
-    <%= f.label :shipping_name, '宛名' %>
-    <%= f.text_field :shipping_name, autofocus: true, placeholder: '令和道子' %>
-  </div>
-  <%= f.submit '新規登録', class: 'btn btn-success' %>
-<% end %>
+<table>
+    <tr>
+      <td class="align-bottom"><%= f.label :postal_code, '郵便番号(ハイフンなし）' %></td>
+      <td><%= f.text_field :postal_code, autofocus: true, placeholder: '0000000', class: "form-control" %></td>
+      <td class="w-50"></td>
+    </tr>
+    <tr>
+      <td class="align-bottom"><%= f.label :address, '住所' %></td>
+      <td colspan="2"><%= f.text_field :address, autofocus: true,  placeholder: '東京都渋谷区代々木神園町0-0', class: " form-control" %></td>
+    </tr>
+    <tr>
+      <td class="align-bottom"><%= f.label :shipping_name, '宛名' %></td>
+      <td><%= f.text_field :shipping_name, autofocus: true, placeholder: '令和道子', class: "form-control" %></td>
+    </tr>
+</table>
+<div class="row justify-content-center mt-3">
+    <%= f.submit '確認画面へ進む', class: 'btn btn-primary' %>
+</div>
