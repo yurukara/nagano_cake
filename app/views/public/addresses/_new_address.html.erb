@@ -2,7 +2,7 @@
     <div class="field">
     <%= f.label :postal_code, '郵便番号' %>
     <%= f.text_field :postal_code, autofocus: true, placeholder: '0000000' %>
-    
+
     <div class="field">
     <%= f.label :address, '住所' %>
     <%= f.text_field :address, autofocus: true,  placeholder: '東京都渋谷区代々木神園町0-0', class: "w-50 address-textarea" %>
@@ -11,4 +11,5 @@
     <%= f.label :shipping_name, '宛名' %>
     <%= f.text_field :shipping_name, autofocus: true, placeholder: '令和道子' %>
   </div>
+  <%= f.submit '新規登録', class: 'btn btn-success' %>
 <% end %>
