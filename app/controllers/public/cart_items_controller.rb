@@ -1,7 +1,6 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_member!
 
-
   def index
     @cart_items = current_member.cart_items
     @total = @cart_items.inject(0) {|sum, item| sum + item.subtotal}
@@ -26,7 +25,6 @@ class Public::CartItemsController < ApplicationController
         redirect_to root_path
       end
         #個数の制限は要件にない部分なので、必要に応じて削除orコメントアウトで対応します。
-
     end
   end
 
