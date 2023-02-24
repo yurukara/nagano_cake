@@ -43,12 +43,10 @@
                 <td class= 'table-secondary' scope="col" style="width: 40%">商品合計</td>
                 <% order_items_total = 0 %>
                 <!--注文商品全部を合わせた時の価格を求めています。-->
-                <td class= 'bg-white'>
-                  <% @order_items.each do |o| %>
-                  <% order_items_total += o.tax_in_price %>
+                  <% @order_items.each do |item| %>
+                  <% order_items_total += (item.tax_in_price*item.quantity) %>
                   <% end %>
-                  <%= order_items_total.floor.to_s(:delimited) %>
-                </td>
+                  <td class= 'bg-white'><%= order_items_total.floor.to_s(:delimited) %></td>
               </tr>
                 <!--配送料-->
               <tr class= 'table-bordered'>
