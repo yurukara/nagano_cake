@@ -1,2 +1,19 @@
-<h1>Public::Members#edit</h1>
-<p>Find me in app/views/public/members/edit.html.erb</p>
+<div class="container mx-auto">
+  <div class="row mt-5">
+    <div class="col-md-10 mx-auto">
+      <label class=" h4 bg-light pr-3 pl-3">会員情報編集</label>
+      <%= render "public/shared/error_messages", resource: @member %>
+      <%= form_with model: current_member, url: members_update_path, method: :patch do |f| %>
+        <table class="table table-borderless mt-3">
+          <%= render 'admin/members/edit', f: f %>
+          <tr>
+            <td></td>
+            <td><%= f.submit '編集内容を保存',  class: "btn btn-success" %></td>
+            <td></td>
+            <td  scope="col" style="width: 20%"><%= link_to '退会する', members_confirm_path, class: "btn btn-danger" %> </td>
+          </tr>
+        </table>
+      <% end %>
+   </div>
+  </div>
+</div>

@@ -1,2 +1,35 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class='container'>
+  <div class='row mt-4'>
+
+          <%= render 'genrs_search', genres: @genres %>
+
+          <div class= 'col-md-10'>
+            <div class= 'mt-0'>
+              <h4 class='font-weight-bold' style= 'display: inline-block;'>商品一覧</h4>
+                <span>(全<%= @count%>件)</span>
+                <div class= 'd-flex flex-wrap'>
+                  <% @items.each do |item| %>
+                    <div class="font-weight-bold">
+                        <div class= 'p-2' >
+                        <%= link_to item_path(item) do %>
+                            <%= image_tag item.get_item_image(250,250) %>
+                        <% end %>
+                        </div>
+                        <%= link_to item_path(item) do %>
+                        <div><%= item.name %></div>
+                        <% end %>
+                        <% if item.is_active == true %>
+                          <div>¥<%= item.number_to_currency %></div>
+                        <% else %>
+                          <p class="text-danger">売り切れ</p>
+                        <% end %>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+<%= paginate @items %>

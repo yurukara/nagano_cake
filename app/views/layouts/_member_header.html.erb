@@ -1,0 +1,27 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-white bg-info">
+    <div class="container">
+      <a class="navbar-brand text-white" href="/">
+        <span class="h2 text-white font-weight-bold mr-4">Nagano Cake</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <% if member_signed_in? %>
+        <label class="h5 text-white ">ようこそ<%= current_member.last_name %>様！</label>
+      <% end %>
+      <div class="navbar">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li><%= link_to my_page_path, class: "h6 mr-3 text-white" do %>マイページ<% end %></li>
+            <li><%= link_to items_path, class: "h6 mr-3 text-white" do %>商品一覧<% end %></li>
+            <li><%= link_to cart_items_path, class: "h6 mr-3 text-white" do %>カート<% end %></li>
+            <li><%= link_to destroy_member_session_path, method: :delete, class: "h6 mr-3 text-white" do %>ログアウト<% end %></li>
+          </ul>
+        </div>
+        <%= render 'searches/search' %>
+      </div>
+    </div>
+  </nav>
+</header>

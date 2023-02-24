@@ -1,2 +1,49 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <p class="text-success"><%= flash[:alert] %></p>
+
+  <div class="row mt-4" >
+
+    <%= render 'public/items/genrs_search', genres: @genres %>
+
+    <div class="col-lg-7 d-flex justify-content-center align-items-center ml-3 bg-image shadow-lg" style="background-image: url('assets/okasi.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover;" >
+      <p class="d-inline-block text-light pt-4 pr-5 pb-4 ml-5" style="background-color: rgba(40, 40, 40, 0.6);">
+        ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。
+      </p>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+
+    <div class="col-lg-10 offset-sm-2">
+      <h2 class="font-weight-bold mb-4">新着商品</h2>
+      <div class='d-inline-flex'>
+      <% @items.first(4).each do |item| %>
+        <div class="flex-column mr-3 font-weight-bold">
+          <p class="shadow-lg">
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.get_item_image(200,200) %>
+            <% end %>
+          </p>
+          <p><%= item.name %></p>
+          <% if item.is_active == true %>
+            <p>¥<%= item.with_tax_price.floor.to_s(:delimited) %></p>
+          <% else %>
+            <p class="text-danger">売り切れ</p>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col text-right">
+      <%= link_to '全ての商品を見る>', items_path %>
+      </div>
+
+    </div>
+
+</div>

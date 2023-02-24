@@ -1,0 +1,8 @@
+<div class="col-lg-2 border p-0" style="height: 280px;">
+      <p class="text-center border-bottom font-weight-bold">ジャンル検索</p>
+      <% @genres.each do |genre| %>
+      <ul class="pl-3">
+      <li class="list-unstyled"><%= link_to genre.name, items_path(genre_id: genre.id) %></li>
+      </ul>
+      <% end %>
+</div>

@@ -1,2 +1,48 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container">
+
+  <div class="row mt-5 mb-4">
+    <div class="col-lg-3">
+      <h4 class="bg-light pl-3 pr-3 text-center">ショッピングカート</h4>
+    </div>
+    <div class="col-lg-6 offset-sm-3 text-right">
+      <%= link_to 'カートを空にする', destroy_all_path, method: :delete, class: 'btn btn-danger text-right' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>商品名</td>
+          <td scope="col" style="width: 15%">単価(税込)</td>
+          <td scope="col" style="width: 15%">数量</td>
+          <td scope="col" style="width: 15%">小計</td>
+          <td scope="col" style="width: 15%"></td>
+        </tr>
+      </thead>
+      <tbody class="table-sm">
+        <%= render 'cart_items_index', cart_items: @cart_items %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-3">
+      <%= link_to '買い物を続ける', root_path, class: 'btn btn-primary' %>
+    </div>
+    <div class="col-lg-4 offset-lg-5">
+      <table class="table table-bordered">
+        <tr>
+          <td>合計金額</td>
+          <td class="total"><%= render 'total', total: @total %></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="order_path">
+    <%= render 'order' %>
+  </div>
+
+</div>
