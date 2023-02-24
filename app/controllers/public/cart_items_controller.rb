@@ -22,6 +22,7 @@ class Public::CartItemsController < ApplicationController
         @cart_item.save
         redirect_to cart_items_path
       else
+        flash[:alert] = '販売停止中です'
         redirect_to root_path
       end
         #個数の制限は要件にない部分なので、必要に応じて削除orコメントアウトで対応します。
